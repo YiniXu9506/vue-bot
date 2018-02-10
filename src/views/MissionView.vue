@@ -45,6 +45,7 @@ export default {
     return {
       mission_id: this.$route.query.id, 
       dialog: false,
+      detail: '',
       dialogData: {
         title: '',
         missionForm: {
@@ -99,9 +100,11 @@ export default {
        alert("mission id cannot be empty");
        return 
      }
-    //  ajax.getMissionReportByID(this.mission_id).then((result) => {
-    //     this.detail = result.data.data;
-    //  }).catch(() => {})
+
+     ajax.getMissionReportByID(this.mission_id).then((result) => {
+        this.detail = result.data.data;
+     }).catch(() => {})
+
   }, 
 
   methods: {
@@ -110,7 +113,11 @@ export default {
           alert("mission id cannot be empty");
           return 
         }
-        ajax.replayMission(this.mission_id).then((result) => {
+         this.dialogData.missionForm.tidb_version = this.detail.tidb_version; 
+         this.dialogData.missionForm.tikv_version = this.detail.tikv_version; 
+         this.dialogData.missionForm.pd_version = this.detail.pd_version; 
+
+        ajax.replayMissionWithData(this.mission_id, this.dialogData.missionForm).then((result) => {
           if (result.data.code != 200) {
             this.$notify({
               title: "ERROR",
@@ -205,10 +212,13 @@ export default {
         }
       },
       createMission: function () {
-        console.log(this.dialogData.missionForm);
+        //  this.dialogData.missionForm.name = this.detail.name;
+        //  this.dialogData.missionForm.scenes_name= this.mission.scenes.name;
+        //  this.dialogData.missionForm.timeout = this.detail.timeout; 
+        //  this.dialogData.missionForm.slack_channel = this.mission.messager.callback; 
         ajax.replayMissionWithData(
           this.mission_id,
-          this.dialogData.missionForm
+          this.dialogData.missionForm 
         ).then((result) => {
           if (result.data.code != 200) {
             this.$notify({

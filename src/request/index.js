@@ -374,11 +374,12 @@ class Ajax {
   }
 
   replayMission(id) {
-    return axios.post(`${Proxy}/mission/${id}/replay`)
+    return axios.post(`${Proxy}/mission/${id}/replay/false`)
   }
 
   replayMissionWithData(id, data) {
-    return axios.post(`${Proxy}/mission/${id}/replay`, data)
+    console.log(data);
+    return axios.post(`${Proxy}/mission/${id}/replay/false`, data)
   }
 
   holdMission(id) {
