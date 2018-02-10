@@ -385,5 +385,13 @@ class Ajax {
   holdMission(id) {
     return axios.post(`${Proxy}/mission/${id}/hold`)
   }
+
+  getExpiredMission() {
+    return axios.get(`${Proxy}/mission/expired`)
+  }
+
+  handleMission(id) {
+    return axios.post(`${Proxy}/mission/${id}/handle`)
+  }
 }
 export default new Ajax()

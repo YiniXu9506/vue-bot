@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import MissionView from '@/views/MissionView'
+import ExpiredMission from '@/views/ExpiredMission'
 
 Vue.use(Router)
 
@@ -15,7 +16,7 @@ export default new Router({
     //   name: 'Hello',
     //   component: Hello
     // },
-    { path: '/', redirect: '/bot/mission' },
+    { path: '/', redirect: '/bot/mission/expired' },
     {
       path: '/404',
       name: 'NotFoundView',
@@ -25,6 +26,11 @@ export default new Router({
       path: '/bot/mission',
       name: 'MissionView',
       component: MissionView 
+    }, 
+    {
+      path: '/bot/mission/expired',
+      name: 'ExpiredMission',
+      component: ExpiredMission  
     }
   ]
 })
