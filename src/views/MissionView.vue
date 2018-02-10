@@ -45,7 +45,6 @@ export default {
     return {
       mission_id: this.$route.query.id, 
       dialog: false,
-      detail: '',
       dialogData: {
         title: '',
         missionForm: {
@@ -96,17 +95,21 @@ export default {
   }, 
 
   created() {
-     if (this.mission_id == "") {
+     if (this.mission_id == null || this.mission_id == "") {
        alert("mission id cannot be empty");
        return 
      }
-     ajax.getMissionReportByID(this.mission_id).then((result) => {
-        this.detail = result.data.data;
-     }).catch(() => {})
+    //  ajax.getMissionReportByID(this.mission_id).then((result) => {
+    //     this.detail = result.data.data;
+    //  }).catch(() => {})
   }, 
 
   methods: {
       clickRerun: function() {
+        if (this.mission_id == null || this.mission_id == "") {
+          alert("mission id cannot be empty");
+          return 
+        }
         ajax.replayMission(this.mission_id).then((result) => {
           if (result.data.code != 200) {
             this.$notify({
@@ -134,6 +137,10 @@ export default {
       }, 
 
       clickHold: function() {
+        if (this.mission_id == null || this.mission_id == "") {
+          alert("mission id cannot be empty");
+          return 
+        }
         ajax.holdMission(this.mission_id).then((result) => {
           if (result.data.code != 200) {
             this.$notify({
@@ -161,6 +168,10 @@ export default {
       }, 
 
       clickCreateMission: function () {
+        if (this.mission_id == null || this.mission_id == "") {
+          alert("mission id cannot be empty");
+          return 
+        }
         this.dialogData = Object.assign({}, this.dialogData, {
           title: "Create New Mission With New Version",
         })
