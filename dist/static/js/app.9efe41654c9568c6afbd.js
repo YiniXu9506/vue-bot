@@ -1298,6 +1298,7 @@ const NotFoundView = __WEBPACK_IMPORTED_MODULE_0_vue__["default"].component('Not
 });
 
 /* harmony default export */ __webpack_exports__["a"] = (new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
+  mode: 'history',
   routes: [
   // {
   //   path: '/view',
@@ -1353,4 +1354,4 @@ module.exports = Component.exports
 /***/ })
 
 },[123]);
-//# sourceMappingURL=app.1a0164794c835e3cc12c.js.map
+//# sourceMappingURL=app.9efe41654c9568c6afbd.js.map
