@@ -32,6 +32,6 @@ export default new Router({
       path: '/bot/mission/expired',
       name: 'ExpiredMission',
       component: ExpiredMission  
-    }
+    } 
   ]
 })
